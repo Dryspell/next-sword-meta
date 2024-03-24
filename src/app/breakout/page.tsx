@@ -17,6 +17,8 @@ export default function Game() {
 		}
 	}, []);
 
+	if (typeof window === "undefined") return null;
+
 	return (
 		<div>
 			<h1>Excalibur Game</h1>
