@@ -8,20 +8,13 @@ export default function Game() {
 	const gameRef = React.useRef<Engine>();
 
 	React.useEffect(() => {
-		if (
-			!gameRef.current &&
-			gameCanvas.current &&
-			typeof window !== "undefined"
-		) {
+		if (!gameRef.current && gameCanvas.current) {
 			intializeGame(gameRef, gameCanvas);
 		}
 	}, []);
 
-	if (typeof window === "undefined") return null;
-
 	return (
 		<div>
-			<h1>Excalibur Game</h1>
 			<canvas ref={gameCanvas} id="gameCanvas"></canvas>
 		</div>
 	);

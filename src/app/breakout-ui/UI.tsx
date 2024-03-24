@@ -14,9 +14,6 @@ export default function UI({
 }) {
 	return (
 		<>
-			{/* <h1 style={{ position: "relative", left: 0, top: 0 }}>
-				Score: {gameState.score}
-			</h1> */}
 			<div style={{ position: "absolute", right: 0, top: "55%" }}>
 				<button
 					style={{

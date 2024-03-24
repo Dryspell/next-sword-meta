@@ -222,7 +222,6 @@ export const intializeGame = (
 	gameCanvas: HTMLCanvasElement,
 	uiRoot: HTMLDivElement
 ) => {
-	if (typeof window === "undefined") return;
 	game = new Engine({
 		canvasElement: gameCanvas,
 		displayMode: DisplayMode.FitContainerAndFill,
