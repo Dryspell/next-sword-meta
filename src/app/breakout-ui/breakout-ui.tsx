@@ -146,7 +146,7 @@ const initializeBall = (
 	return ball;
 };
 
-const generateBrick = (
+export const generateBrick = (
 	game: Engine,
 	{
 		x,
@@ -172,7 +172,7 @@ const generateBrick = (
 	return brick;
 };
 
-// Padding between bricks
+export // Padding between bricks
 const bricks_PADDING = 20; // px
 const bricks_XOFFSET = 65; // x-offset
 const bricks_YOFFSET = 20; // y-offset
@@ -229,22 +229,44 @@ export const intializeGame = (
 		// height: 600,
 	});
 
+	const paddle = initializePaddle(game);
+	const bricks = initializeBricks(game);
+
+	const generateRandomBrick = () => {
+		bricks.push(
+			generateBrick(game, {
+				x: Math.floor(Math.random() * game.drawWidth),
+				y: Math.floor((Math.random() * game.drawHeight) / 2),
+				width: bricks_WIDTH(game),
+				height: bricks_HEIGHT,
+				color: bricks_COLORS[Math.floor(Math.random() * 3)],
+			})
+		);
+	};
+
 	const ui = createRoot(uiRoot);
 
 	const [gameState, setGameState] = createSignal({ score: 0, lives: 3 }, [
 		(state, setState) => {
 			ui.render(
-				<UI gameState={state} setGameState={setState} game={game} />
+				<UI
+					gameState={state}
+					setGameState={setState}
+					game={game}
+					actions={{ generateRandomBrick }}
+				/>
 			);
 		},
 	]);
 
 	ui.render(
-		<UI gameState={gameState()} setGameState={setGameState} game={game} />
+		<UI
+			gameState={gameState()}
+			setGameState={setGameState}
+			game={game}
+			actions={{ generateRandomBrick }}
+		/>
 	);
-
-	const paddle = initializePaddle(game);
-	const bricks = initializeBricks(game);
 
 	const ball = initializeBall(game, gameState, setGameState, bricks);
 
