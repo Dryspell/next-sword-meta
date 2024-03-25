@@ -232,6 +232,7 @@ export const intializeGame = (
 	const paddle = initializePaddle(game);
 	const bricks = initializeBricks(game);
 
+	// This function doesn't actually need to be passed into the UI component this way, it is just to demonstrate how to pass in functions to the UI component
 	const generateRandomBrick = () => {
 		bricks.push(
 			generateBrick(game, {
